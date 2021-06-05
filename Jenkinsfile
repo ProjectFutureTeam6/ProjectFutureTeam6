@@ -11,20 +11,13 @@ pipeline{
             stages{
                 stage("Compile"){
                     steps{
-<<<<<<< HEAD
+
                         sh "mvn clean compile"
-=======
-                        sh "mvn clean compile"
->>>>>>> 7e647f65078068f45822ed40c31505b5df126c69
                     }
                 }
                 stage("Testing"){
                     steps{
-<<<<<<< HEAD
                         sh "mvn test"
-=======
-                        sh "mvn test"
->>>>>>> 7e647f65078068f45822ed40c31505b5df126c69
                     }
                     post{
                         always{
@@ -80,11 +73,7 @@ pipeline{
             stages{
                 stage("Compile"){
                     steps{
-<<<<<<< HEAD
                         sh "mvn clean compile"
-=======
-                        sh "mvn clean compile"
->>>>>>> 7e647f65078068f45822ed40c31505b5df126c69
                     }
                 }
                 stage("Package the application"){
@@ -110,12 +99,8 @@ pipeline{
             stages{
                 stage("Compile"){
                     steps{
-<<<<<<< HEAD
                         sh "mvn clean compile"
-=======
-                        sh "mvn clean compile"
->>>>>>> 7e647f65078068f45822ed40c31505b5df126c69
-                    }
+
                 }
                 stage("Package the application"){
                     steps{
@@ -125,29 +110,19 @@ pipeline{
                 }
                 // stage("Clean old mvn output"){
                 //     steps{
-<<<<<<< HEAD
+
                 //         sh "mvn clean"
-=======
-                //         sh "mvn clean"
->>>>>>> 7e647f65078068f45822ed40c31505b5df126c69
                 //     }
                 // }
                 // stage("Compile"){
                 //     steps{
-<<<<<<< HEAD
                 //         sh "mvn clean compile"
-=======
-                //         sh "mvn clean compile"
->>>>>>> 7e647f65078068f45822ed40c31505b5df126c69
+
                 //     }
                 // }
                 // stage("Testing"){
                 //     steps{
-<<<<<<< HEAD
                 //         sh "mvn test"
-=======
-                //         sh "mvn test"
->>>>>>> 7e647f65078068f45822ed40c31505b5df126c69
                 //     }
                 //     post{
                 //         always{
