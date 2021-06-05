@@ -11,7 +11,6 @@ pipeline{
             stages{
                 stage("Compile"){
                     steps{
-
                         sh "mvn clean compile"
                     }
                 }
@@ -100,7 +99,7 @@ pipeline{
                 stage("Compile"){
                     steps{
                         sh "mvn clean compile"
-
+                    }
                 }
                 stage("Package the application"){
                     steps{
@@ -110,14 +109,12 @@ pipeline{
                 }
                 // stage("Clean old mvn output"){
                 //     steps{
-
                 //         sh "mvn clean"
                 //     }
                 // }
                 // stage("Compile"){
                 //     steps{
                 //         sh "mvn clean compile"
-
                 //     }
                 // }
                 // stage("Testing"){
@@ -130,7 +127,6 @@ pipeline{
                 //         }
                 //     }
                 // }
-                }
             }
         }
     }
