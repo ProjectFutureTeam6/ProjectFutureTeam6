@@ -7,8 +7,8 @@ services:
     ports:
       - '5001:8080' # map localhost 5001 to container's 8080.
       # connection string to db would look like mysql://db:3306
-    #links:
-      #- "db:database" # db is reachable from app at the hostnames db and database
+    depends_on:
+      - "db"
     networks:
       - team6-custom-network
   db:
