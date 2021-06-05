@@ -19,7 +19,7 @@ services:
     networks:
       - team6-custom-network
     ports:
-      - '3306' # map localhost 5000 to container's 3306
+      - '5000:3306' # map localhost 5000 to container's 3306
 
 networks:
     team6-custom-network:
