@@ -11,12 +11,12 @@ pipeline{
             stages{
                 stage("Compile"){
                     steps{
-                        bat "mvn clean compile"
+                        sh "mvn clean compile"
                     }
                 }
                 stage("Testing"){
                     steps{
-                        bat "mvn test"
+                        sh "mvn test"
                     }
                     post{
                         always{
@@ -72,7 +72,7 @@ pipeline{
             stages{
                 stage("Compile"){
                     steps{
-                        bat "mvn clean compile"
+                        sh "mvn clean compile"
                     }
                 }
                 stage("Package the application"){
@@ -98,7 +98,7 @@ pipeline{
             stages{
                 stage("Compile"){
                     steps{
-                        bat "mvn clean compile"
+                        sh "mvn clean compile"
                     }
                 }
                 stage("Package the application"){
@@ -109,17 +109,17 @@ pipeline{
                 }
                 // stage("Clean old mvn output"){
                 //     steps{
-                //         bat "mvn clean"
+                //         sh "mvn clean"
                 //     }
                 // }
                 // stage("Compile"){
                 //     steps{
-                //         bat "mvn clean compile"
+                //         sh "mvn clean compile"
                 //     }
                 // }
                 // stage("Testing"){
                 //     steps{
-                //         bat "mvn test"
+                //         sh "mvn test"
                 //     }
                 //     post{
                 //         always{
