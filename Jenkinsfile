@@ -4,9 +4,9 @@ pipeline{
         maven "maven-3.6.1"
     }
     stages{
-        stage("Feature branches"){
+        stage("Pr branches"){
             when{
-                branch 'F**'
+                branch 'PR**'
             }
             stages{
                 stage("Compile"){
