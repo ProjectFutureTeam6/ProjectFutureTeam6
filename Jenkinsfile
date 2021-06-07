@@ -3,32 +3,32 @@ pipeline{
     tools{
         maven "maven-3.6.1"
     }
-    stages{
-        stage("Feature branches"){
-            when{
-                branch 'F**'
-            }
-            stages{
-                stage("Compile"){
-                    steps{
-                        sh "mvn clean compile"
-                    }
-                }
-                stage("Testing"){
-                    steps{
-                        sh "mvn test"
-                    }
-                    post{
-                        always{
-                            junit '**/target/surefire-reports/*.xml'
-                        }
-                        failure{
-                            emailext body: 'Link to JOB $BUILD_URL', recipientProviders: [requestor()], subject: 'FAILURE BUILD: $BUILD_TAG'
-                        }  
-                    }
-                }    
-            }
-        }
+    // stages{
+    //     stage("Feature branches"){
+    //         when{
+    //             branch 'F**'
+    //         }
+    //         stages{
+    //             stage("Compile"){
+    //                 steps{
+    //                     sh "mvn clean compile"
+    //                 }
+    //             }
+    //             stage("Testing"){
+    //                 steps{
+    //                     sh "mvn test"
+    //                 }
+    //                 post{
+    //                     always{
+    //                         junit '**/target/surefire-reports/*.xml'
+    //                     }
+    //                     failure{
+    //                         emailext body: 'Link to JOB $BUILD_URL', recipientProviders: [requestor()], subject: 'FAILURE BUILD: $BUILD_TAG'
+    //                     }  
+    //                 }
+    //             }    
+    //         }
+    //     }
         // stage("Main branch"){
         //     when{
         //         branch 'main'
@@ -75,6 +75,19 @@ pipeline{
                         sh "mvn clean compile"
                     }
                 }
+                stage("Testing"){
+                    steps{
+                        sh "mvn test"
+                    }
+                    post{
+                        always{
+                            junit '**/target/surefire-reports/*.xml'
+                        }
+                        failure{
+                            emailext body: 'Link to JOB $BUILD_URL', recipientProviders: [requestor()], subject: 'FAILURE BUILD: $BUILD_TAG'
+                        }  
+                    }
+                }
                 stage("Package the application"){
                     steps{
                         sh "mvn package -Dmaven.test.skip=true"
@@ -82,10 +95,10 @@ pipeline{
                     }
                     post{
                         success{
-                            emailext body: 'Link to JOB $BUILD_URL', subject: 'SUCCESSFUL BUILD: $BUILD_TAG', to:$DEFAULT_RECIPIENTS
+                            emailext body: 'Link to JOB $BUILD_URL', subject: 'SUCCESSFUL BUILD: $BUILD_TAG', to: 'kvasalakis@athtech.gr'
                         }
                         failure{
-                            emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', to:$DEFAULT_RECIPIENTS
+                            emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', to: 'kvasalakis@athtech.gr'
                         }  
                     }
                 }
