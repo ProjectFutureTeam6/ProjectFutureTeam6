@@ -62,16 +62,16 @@
 
     - name: Copy docker-compose-file
       ansible.builtin.copy:
-        src: .
-        dest: ~/ProjectFutureTeam6
+        src: ./docker-compose.yml
+        dest: ~/home/pf-team-6
         owner: pf-team-6
         group: pf-team-6
         mode: '0744'
 
     - name: Copy jar
       ansible.builtin.copy:
-        src: /var/lib/jenkins/workspace/ProjectFutureTeam6_development/target/
-        dest: ~/ProjectFutureTeam6
+        src: /var/lib/jenkins/workspace/ProjectFutureTeam6_development/target/toDoAppWithLogin.jar
+        dest: ~/home/pf-team-6
         owner: pf-team-6
         group: pf-team-6
         mode: '0744'
@@ -80,10 +80,16 @@
     #    project_src: .
     #    state: absent
 
-    - name: Create and Start services
-      community.docker.docker_compose:
-        project_src: .
-        build: yes
+    # - name: Create and Start services
+    #   community.docker.docker_compose:
+    #     project_src: .
+    #     build: yes
+
+    - name: Change directory to pf-team-6
+      ansible.builtin.command: cd home/pf-team-6
+
+    - name: Run docker compose up
+      ansible.builtin.command: docker-compose up
 
     # - name: Check current docker-compose version
     #   command: docker-compose --version
