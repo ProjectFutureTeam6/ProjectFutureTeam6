@@ -85,11 +85,11 @@
     #     project_src: .
     #     build: yes
 
-    - name: Change directory to pf-team-6
-      ansible.builtin.command: cd /home/pf-team-6
+    # - name: Change directory to pf-team-6
+    #   ansible.builtin.command: cd /home/pf-team-6
 
     - name: Run docker compose up
-      ansible.builtin.command: docker-compose up
+      ansible.builtin.command: docker-compose -f /home/pf-team-6/docker-compose.yml up 
 
     # - name: Check current docker-compose version
     #   command: docker-compose --version
