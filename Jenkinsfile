@@ -50,25 +50,25 @@ pipeline{
                         }  
                     }
                 }
-                stage("Build Image"){
-                    steps{
-                        sh "sudo docker build -t team6hub/team6repo:team6tag /var/lib/jenkins/workspace/ProjectFutureTeam6_development/"
-                    }
-                }
-                stage("Push image to cloude"){
-                    steps{
-                        sh "sudo docker push team6hub/team6repo:team6tag"
-                    }
-                }
-                stage("Invoke playbook"){
-                        steps{
-                            ansiblePlaybook( 
-                            playbook: '/home/pf-team-6/project/ProjectFutureTeam6/test.yml',
-                            inventory: '/etc/ansible/hosts',
-                            credentialsId: 'vm_ssh',
-                            hostKeyChecking: false) 
-                        }
-                }
+                // stage("Build Image"){
+                //     steps{
+                //         sh "docker build -t team6hub/team6repo:team6tag /var/lib/jenkins/workspace/ProjectFutureTeam6_development/"
+                //     }
+                // }
+                // stage("Push image to cloude"){
+                //     steps{
+                //         sh "docker push team6hub/team6repo:team6tag"
+                //     }
+                // }
+                // stage("Invoke playbook"){
+                //         steps{
+                //             ansiblePlaybook( 
+                //             playbook: '/home/pf-team-6/project/ProjectFutureTeam6/test.yml',
+                //             inventory: '/etc/ansible/hosts',
+                //             credentialsId: 'vm_ssh',
+                //             hostKeyChecking: false) 
+                //         }
+                // }
             }
         }
         stage("Production branch"){
@@ -92,25 +92,25 @@ pipeline{
                         }  
                     }
                 }
-                stage("Build Image"){
-                    steps{
-                        sh "sudo docker build -t team6hub/team6repo:team6tag /var/lib/jenkins/workspace/ProjectFutureTeam6_development/"
-                    }
-                }
-                stage("Push image to cloude"){
-                    steps{
-                        sh "sudo docker push team6hub/team6repo:team6tag"
-                    }
-                }
-                stage("Invoke playbook"){
-                    steps{
-                            ansiblePlaybook( 
-                            playbook: '/home/pf-team-6/project/ProjectFutureTeam6/test.yml',
-                            inventory: '/etc/ansible/hosts',
-                            credentialsId: 'vm_ssh',
-                            hostKeyChecking: false)
-                    }
-                }
+                // stage("Build Image"){
+                //     steps{
+                //         sh "docker build -t team6hub/team6repo:team6tag /var/lib/jenkins/workspace/ProjectFutureTeam6_development/"
+                //     }
+                // }
+                // stage("Push image to cloude"){
+                //     steps{
+                //         sh "docker push team6hub/team6repo:team6tag"
+                //     }
+                // }
+                // stage("Invoke playbook"){
+                //     steps{
+                //             ansiblePlaybook( 
+                //             playbook: '/home/pf-team-6/project/ProjectFutureTeam6/test.yml',
+                //             inventory: '/etc/ansible/hosts',
+                //             credentialsId: 'vm_ssh',
+                //             hostKeyChecking: false)
+                //     }
+                // }
             }
         }
     }
