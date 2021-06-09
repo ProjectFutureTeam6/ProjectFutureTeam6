@@ -23,7 +23,7 @@ pipeline{
                             junit '**/target/surefire-reports/*.xml'
                         }
                         failure{
-                            emailext body: 'Link to JOB $BUILD_URL', recipientProviders: [requestor()], subject: 'FAILURE BUILD: $BUILD_TAG'
+                            emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', recipientProviders: [$class: 'DevelopersRecipientProvider']
                         }  
                     }
                 }    
