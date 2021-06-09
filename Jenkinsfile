@@ -50,23 +50,24 @@ pipeline{
                         }  
                     }
                 }
-                //stage("Build Image"){
-//
-                //}
+                stage("Build Image"){
+                    steps(
+                        sh "docker build -t /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile:team6tag"
+                    )
+                }
+                stage("Push image to cloude"){
+                    steps(
+                        sh "docker push team6hub/team6repo"
+                    )
+                }
                 stage("Invoke playbook"){
-                    //withEnv(['PATH+ANSIBLE=${tool Ansible}']){
                         steps{
-                        //ansiColor('xterm') {
                             ansiblePlaybook( 
                             playbook: '/home/pf-team-6/project/ProjectFutureTeam6/test.yml',
                             inventory: '/etc/ansible/hosts',
                             credentialsId: 'vm_ssh',
-                            hostKeyChecking: false)
-                            //credentialsId: 'sample-ssh-key',
-                            //colorized: true) 
-                        //}
+                            hostKeyChecking: false) 
                         }
-                    //}
                 }
             }
         }
@@ -91,20 +92,24 @@ pipeline{
                         }  
                     }
                 }
+                stage("Build Image"){
+                    steps(
+                        sh "docker build -t /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile:team6tag"
+                    )
+                }
+                stage("Push image to cloude"){
+                    steps(
+                        sh "docker push team6hub/team6repo"
+                    )
+                }
                 stage("Invoke playbook"){
                     steps{
-                    //withEnv(['PATH+ANSIBLE"=${tool Ansible}']){
-                        //ansiColor('xterm') {
                             ansiblePlaybook( 
                             playbook: '/home/pf-team-6/project/ProjectFutureTeam6/test.yml',
                             inventory: '/etc/ansible/hosts',
                             credentialsId: 'vm_ssh',
                             hostKeyChecking: false)
-                            //credentialsId: 'sample-ssh-key',
-                            //colorized: true) 
-                       // }
                     }
-                    //}
                 }
             }
         }
