@@ -52,9 +52,13 @@ pipeline{
                 }
                 stage("Invoke playbook"){
                     withEnv(["PATH+ANSIBLE"=${tool 'Ansible'}]){
-                        ansiblePlaybook(
-                            inventory: '/etc/ansible/hosts'
-                            playbook: '/ProjectFutureTeam6/ProjectFutureTeam6/test.yml')
+                        ansiColor('xterm') {
+                            ansiblePlaybook( 
+                            playbook: '/ProjectFutureTeam6/ProjectFutureTeam6/test.yml',
+                            inventory: '/etc/ansible/hosts', 
+                            //credentialsId: 'sample-ssh-key',
+                            colorized: true) 
+                        }
                     }
                 }
             }
@@ -82,9 +86,13 @@ pipeline{
                 }
                 stage("Invoke playbook"){
                     withEnv(["PATH+ANSIBLE"=${tool 'Ansible'}]){
-                        ansiblePlaybook(
-                            inventory: '/etc/ansible/hosts'
-                            playbook: '/ProjectFutureTeam6/ProjectFutureTeam6/test.yml')
+                        ansiColor('xterm') {
+                            ansiblePlaybook( 
+                            playbook: '/ProjectFutureTeam6/ProjectFutureTeam6/test.yml',
+                            inventory: '/etc/ansible/hosts', 
+                            //credentialsId: 'sample-ssh-key',
+                            colorized: true) 
+                        }
                     }
                 }
             }
