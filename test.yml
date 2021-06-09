@@ -89,7 +89,7 @@
     #   ansible.builtin.command: cd /home/pf-team-6
 
     - name: Run docker compose up
-      ansible.builtin.command: docker-compose -f /home/pf-team-6/docker-compose.yml up 
+      ansible.builtin.shell: docker-compose -f /home/pf-team-6/docker-compose.yml up 
 
     # - name: Check current docker-compose version
     #   command: docker-compose --version
