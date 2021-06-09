@@ -44,10 +44,10 @@ pipeline{
                             junit '**/target/surefire-reports/*.xml'
                         }
                         success{
-                            emailext body: 'Link to JOB $BUILD_URL', subject: 'SUCCESSFUL BUILD: $BUILD_TAG', to: 'kvasalakis@athtech.gr','imanoloudis@athetech.gr','xskarlou@athtech.gr','azacharakis@athtech.gr'
+                            emailext body: 'Link to JOB $BUILD_URL', subject: 'SUCCESSFUL BUILD: $BUILD_TAG', to: '$DEFAULT_RECIPIENTS'
                         }
                         failure{
-                            emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', to: 'kvasalakis@athtech.gr','imanoloudis@athetech.gr','xskarlou@athtech.gr','azacharakis@athtech.gr'
+                            emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', to: '$DEFAULT_RECIPIENTS'
                         }  
                     }
                 }
@@ -68,10 +68,10 @@ pipeline{
                             junit '**/target/surefire-reports/*.xml'
                         }
                         success{
-                            emailext body: 'Link to JOB $BUILD_URL', subject: 'SUCCESSFUL BUILD: $BUILD_TAG', to: 'kvasalakis@athtech.gr','imanoloudis@athetech.gr','xskarlou@athtech.gr','azacharakis@athtech.gr'
+                            emailext body: 'Link to JOB $BUILD_URL', subject: 'SUCCESSFUL BUILD: $BUILD_TAG', to: '$DEFAULT_RECIPIENTS'
                         }
                         failure{
-                            emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', to: 'kvasalakis@athtech.gr','imanoloudis@athetech.gr','xskarlou@athtech.gr','azacharakis@athtech.gr'
+                            emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', to: '$DEFAULT_RECIPIENTS'
                         }  
                     }
                 }
