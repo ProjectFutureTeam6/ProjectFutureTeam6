@@ -3,7 +3,8 @@ services:
   app:
     container_name: java-container
     restart: always
-    build: . # Will look at the current directory for the Dockerfile and build it
+    image: jaydckr/team6dockerrepo:team6tag
+    #build: . # Will look at the current directory for the Dockerfile and build it
     ports:
       - '5001:8080' # map localhost 5001 to container's 8080.
       # connection string to db would look like mysql://db:3306
