@@ -52,6 +52,7 @@ pipeline{
                 }
                 stage("Invoke playbook"){
                     //withEnv(['PATH+ANSIBLE=${tool Ansible}']){
+                        steps{
                         //ansiColor('xterm') {
                             ansiblePlaybook( 
                             playbook: '~/project/ProjectFutureTeam6/test.yml',
@@ -59,6 +60,7 @@ pipeline{
                             //credentialsId: 'sample-ssh-key',
                             //colorized: true) 
                         //}
+                        }
                     //}
                 }
             }
@@ -85,6 +87,7 @@ pipeline{
                     }
                 }
                 stage("Invoke playbook"){
+                    steps{
                     //withEnv(['PATH+ANSIBLE"=${tool Ansible}']){
                         //ansiColor('xterm') {
                             ansiblePlaybook( 
@@ -93,6 +96,7 @@ pipeline{
                             //credentialsId: 'sample-ssh-key',
                             //colorized: true) 
                        // }
+                    }
                     //}
                 }
             }
