@@ -54,7 +54,7 @@ pipeline{
                     withEnv(["PATH+ANSIBLE"=${tool 'Ansible'}]){
                         ansiColor('xterm') {
                             ansiblePlaybook( 
-                            playbook: '/ProjectFutureTeam6/ProjectFutureTeam6/test.yml',
+                            playbook: '~/project/ProjectFutureTeam6/test.yml',
                             inventory: '/etc/ansible/hosts', 
                             //credentialsId: 'sample-ssh-key',
                             colorized: true) 
@@ -88,7 +88,7 @@ pipeline{
                     withEnv(["PATH+ANSIBLE"=${tool 'Ansible'}]){
                         ansiColor('xterm') {
                             ansiblePlaybook( 
-                            playbook: '/ProjectFutureTeam6/ProjectFutureTeam6/test.yml',
+                            playbook: '~/project/ProjectFutureTeam6/test.yml',
                             inventory: '/etc/ansible/hosts', 
                             //credentialsId: 'sample-ssh-key',
                             colorized: true) 
