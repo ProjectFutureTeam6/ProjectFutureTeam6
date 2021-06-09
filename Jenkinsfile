@@ -52,7 +52,7 @@ pipeline{
                 }
                 stage("Build Image"){
                     steps{
-                        sh "docker build -t team6hub/team6repo:team6tag /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile"
+                        sh "docker build -t team6hub/team6repo:team6tag /var/lib/jenkins/workspace/ProjectFutureTeam6_development/"
                     }
                 }
                 stage("Push image to cloude"){
@@ -94,7 +94,7 @@ pipeline{
                 }
                 stage("Build Image"){
                     steps{
-                        sh "docker build -t team6hub/team6repo:team6tag /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile"
+                        sh "docker build -t team6hub/team6repo:team6tag /var/lib/jenkins/workspace/ProjectFutureTeam6_development/"
                     }
                 }
                 stage("Push image to cloude"){
