@@ -60,8 +60,7 @@ pipeline{
                             ansiblePlaybook( 
                             playbook: '/home/pf-team-6/project/ProjectFutureTeam6/test.yml',
                             inventory: '/etc/ansible/hosts',
-                            credentialsId: 'vm_ssh',
-                            disableHostKeyChecking: true)
+                            credentialsId: 'vm_ssh')
                             //credentialsId: 'sample-ssh-key',
                             //colorized: true) 
                         //}
@@ -98,8 +97,7 @@ pipeline{
                             ansiblePlaybook( 
                             playbook: '/home/pf-team-6/project/ProjectFutureTeam6/test.yml',
                             inventory: '/etc/ansible/hosts',
-                            credentialsId: 'vm_ssh',
-                            disableHostKeyChecking: true)
+                            credentialsId: 'vm_ssh')
                             //credentialsId: 'sample-ssh-key',
                             //colorized: true) 
                        // }
