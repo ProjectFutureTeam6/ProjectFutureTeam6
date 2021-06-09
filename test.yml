@@ -12,6 +12,11 @@
         name: docker.io
         state: present
 
+    - name: Install or update pip
+      community.general.easy_install:
+        name: pip
+        state: latest
+
     - name: Install Docker SDK for Python.
       pip:
         name: docker
