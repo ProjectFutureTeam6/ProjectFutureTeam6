@@ -22,10 +22,15 @@
         name: python3-pip
         state: present
 
-    - name: Install setuptools Python.
-      pip:
-        name: setuptools
-        state: present       
+    - name: Install setuptools Python
+      apt:
+        name: python-pkg-resources
+        state: present
+
+    # - name: Install setuptools Python.
+    #   pip:
+    #     name: setuptools
+    #     state: present       
 
     - name: Install Docker SDK for Python.
       pip:
