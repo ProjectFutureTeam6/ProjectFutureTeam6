@@ -55,7 +55,7 @@ pipeline{
                         steps{
                         //ansiColor('xterm') {
                             ansiblePlaybook( 
-                            playbook: '/home/project/ProjectFutureTeam6/test.yml',
+                            playbook: '/home/pf-team-6/project/ProjectFutureTeam6/test.yml',
                             inventory: '/etc/ansible/hosts')
                             //credentialsId: 'sample-ssh-key',
                             //colorized: true) 
@@ -91,7 +91,7 @@ pipeline{
                     //withEnv(['PATH+ANSIBLE"=${tool Ansible}']){
                         //ansiColor('xterm') {
                             ansiblePlaybook( 
-                            playbook: '/home/project/ProjectFutureTeam6/test.yml',
+                            playbook: '/home/pf-team-6/project/ProjectFutureTeam6/test.yml',
                             inventory: '/etc/ansible/hosts') 
                             //credentialsId: 'sample-ssh-key',
                             //colorized: true) 
