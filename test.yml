@@ -63,7 +63,7 @@
     - name: Copy docker-compose-file
       ansible.builtin.copy:
         src: ./docker-compose.yml
-        dest: ~/home/pf-team-6
+        dest: /home/pf-team-6
         owner: pf-team-6
         group: pf-team-6
         mode: '0744'
@@ -71,7 +71,7 @@
     - name: Copy jar
       ansible.builtin.copy:
         src: /var/lib/jenkins/workspace/ProjectFutureTeam6_development/target/toDoAppWithLogin.jar
-        dest: ~/home/pf-team-6
+        dest: /home/pf-team-6
         owner: pf-team-6
         group: pf-team-6
         mode: '0744'
