@@ -53,8 +53,8 @@ pipeline{
                 stage("Invoke playbook"){
                     withEnv(["PATH+ANSIBLE"=${tool 'Ansible'}]){
                         ansiblePlaybook(
-                            inventory: '~/etc/ansible/hosts'
-                            playbook: '~/ProjectFutureTeam6/test.yml'
+                            inventory: '/etc/ansible/hosts'
+                            playbook: '/ProjectFutureTeam6/ProjectFutureTeam6/test.yml'
                         )
                     }
                 }
@@ -84,8 +84,8 @@ pipeline{
                 stage("Invoke playbook"){
                     withEnv(["PATH+ANSIBLE"=${tool 'Ansible'}]){
                         ansiblePlaybook(
-                            inventory: '~/etc/ansible/hosts'
-                            playbook: '~/ProjectFutureTeam6/test.yml'
+                            inventory: '/etc/ansible/hosts'
+                            playbook: '/ProjectFutureTeam6/ProjectFutureTeam6/test.yml'
                         )
                     }
                 }
