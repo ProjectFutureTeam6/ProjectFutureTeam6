@@ -37,7 +37,6 @@ pipeline{
                 stage("Package the application"){
                     steps{
                         sh "mvn clean package"
-                        // deploy through ansible
                     }
                     post{
                         always{
@@ -51,6 +50,14 @@ pipeline{
                         }  
                     }
                 }
+                stage("Invoke playbook"){
+                    withEnv(["PATH+ANSIBLE"=${tool 'Ansible'}]){
+                        ansiblePlaybook(
+                            inventory: '~/etc/ansible/hosts'
+                            playbook: '~/ProjectFutureTeam6/test.yml'
+                        )
+                    }
+                }
             }
         }
         stage("Production branch"){
@@ -61,7 +68,6 @@ pipeline{
                 stage("Package the application"){
                     steps{
                         sh "mvn clean package"
-                        // deploy through ansible
                     }
                     post{
                         always{
@@ -73,6 +79,14 @@ pipeline{
                         failure{
                             emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', to: '$DEFAULT_RECIPIENTS'
                         }  
+                    }
+                }
+                stage("Invoke playbook"){
+                    withEnv(["PATH+ANSIBLE"=${tool 'Ansible'}]){
+                        ansiblePlaybook(
+                            inventory: '~/etc/ansible/hosts'
+                            playbook: '~/ProjectFutureTeam6/test.yml'
+                        )
                     }
                 }
             }
