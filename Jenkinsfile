@@ -1,4 +1,7 @@
 pipeline{
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('docker_cred')
+    }
     agent any
     tools{
         maven "maven-3.6.1"
@@ -23,7 +26,7 @@ pipeline{
                             junit '**/target/surefire-reports/*.xml'
                         }
                         failure{
-                            emailext body: 'Link to JOB $BUILD_URL', recipientProviders: [requestor()], subject: 'FAILURE BUILD: $BUILD_TAG'
+                            emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', recipientProviders: [$class: 'DevelopersRecipientProvider']
                         }  
                     }
                 }    
@@ -37,7 +40,6 @@ pipeline{
                 stage("Package the application"){
                     steps{
                         sh "mvn clean package"
-                        // deploy through ansible
                     }
                     post{
                         always{
@@ -51,6 +53,33 @@ pipeline{
                         }  
                     }
                 }
+                stage("Build Image"){
+                    steps{
+                        sh "docker build . -t team6hub/team6repo:team6tag -f /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile"
+                    }
+                }
+                stage("Login to Dcoker HUB"){
+                    steps{
+                        sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+                    }
+                }
+                stage("Push image to cloude"){
+                    steps{
+                       sh "docker push team6hub/team6repo:team6tag"
+                    }
+                    post{
+                        always{
+                            sh "docker logout"
+                        }
+                    }
+                }
+                stage("Invoke playbook"){
+                    steps{
+                        ansiblePlaybook( 
+                        playbook: '/var/lib/jenkins/workspace/ProjectFutureTeam6_development/playbook_development.yml',
+                        inventory: '/etc/ansible/hosts')
+                    }
+                }
             }
         }
         stage("Production branch"){
@@ -61,7 +90,6 @@ pipeline{
                 stage("Package the application"){
                     steps{
                         sh "mvn clean package"
-                        // deploy through ansible
                     }
                     post{
                         always{
@@ -73,6 +101,33 @@ pipeline{
                         failure{
                             emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', to: '$DEFAULT_RECIPIENTS'
                         }  
+                    }
+                }
+                stage("Build Image"){
+                    steps{
+                        sh "docker build . -t team6hub/team6repo:team6tag -f /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile"
+                    }
+                }
+                stage("Login to Dcoker HUB"){
+                    steps{
+                        sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+                    }
+                }
+                stage("Push image to cloude"){
+                    steps{
+                        sh "docker push team6hub/team6repo:team6tag"
+                    }
+                    post{
+                        always{
+                            sh "docker logout"
+                        }
+                    }
+                }
+                stage("Invoke playbook"){
+                    steps{
+                        ansiblePlaybook( 
+                        playbook: '/var/lib/jenkins/workspace/ProjectFutureTeam6_production/playbook_production.yml',
+                        inventory: '/etc/ansible/hosts')
                     }
                 }
             }
