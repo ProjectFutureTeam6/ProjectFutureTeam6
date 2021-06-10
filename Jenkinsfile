@@ -71,6 +71,11 @@ pipeline{
                        sh "docker push team6hub/team6repo:team6tag"
                     }
                 }
+                post{
+                    always{
+                        sh "docker logout"
+                    }
+                }
                 stage("Invoke playbook"){
                         steps{
                             ansiblePlaybook( 
@@ -80,11 +85,6 @@ pipeline{
                             //hostKeyChecking: false) 
                         }
                 }
-            }
-        }
-        post{
-            always{
-                sh "docker logout"
             }
         }
         stage("Production branch"){
@@ -123,6 +123,11 @@ pipeline{
                         sh "docker push team6hub/team6repo:team6tag"
                     }
                 }
+                post{
+                    always{
+                        sh "docker logout"
+                    }
+                }
                 stage("Invoke playbook"){
                     steps{
                             ansiblePlaybook( 
@@ -132,11 +137,6 @@ pipeline{
                             //hostKeyChecking: false)
                     }
                 }
-            }
-        }
-        post{
-            always{
-                sh "docker logout"
             }
         }
     }
