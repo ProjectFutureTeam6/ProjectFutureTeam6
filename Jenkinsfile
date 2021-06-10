@@ -1,11 +1,11 @@
 pipeline{
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('docker_cred')
+        //VMSSH_CREDS = credentials('vm_ssh')
+    }
     agent any
     tools{
         maven "maven-3.6.1"
-    }
-    enviroment{
-        DOCKERHUB_CREDENTIALS = credentials('docker_cred')
-        //VMSSH_CREDS = credentials('vm_ssh')
     }
     stages{
         stage("Pr branches"){
