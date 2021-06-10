@@ -3,6 +3,10 @@ pipeline{
     tools{
         maven "maven-3.6.1"
     }
+    enviroment{
+        DOCKERHUB_CREDENTIALS = credentials('docker_cred')
+        VMSSH_CREDS = credentials('vm_ssh')
+    }
     stages{
         stage("Pr branches"){
             when{
@@ -38,23 +42,17 @@ pipeline{
                     steps{
                         sh "mvn clean package"
                     }
-                    post{
-                        always{
-                            junit '**/target/surefire-reports/*.xml'
-                        }
-                        success{
-                            emailext body: 'Link to JOB $BUILD_URL', subject: 'SUCCESSFUL BUILD: $BUILD_TAG', to: '$DEFAULT_RECIPIENTS'
-                        }
-                        failure{
-                            emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', to: '$DEFAULT_RECIPIENTS'
-                        }  
-                    }
                 }
                 stage("Build Image"){
                     steps{
-                        //sh "docker build . -t team6hub/team6repo:team6tag -f /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile"
-                        img = docker.build("team6hub/team6repo:team6tag", '-f /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile')
+                        sh "docker build . -t team6hub/team6repo:team6tag -f /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile"
+                        //img = docker.build("team6hub/team6repo:team6tag", '-f /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile')
 
+                    }
+                }
+                stage("Login to Dcoker HUB"){
+                    steps{
+                        sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
                     }
                 }
                 stage("Push image to cloude"){
@@ -71,6 +69,20 @@ pipeline{
                             //hostKeyChecking: false) 
                         }
                 }
+            }
+            post{
+                always{
+                    junit '**/target/surefire-reports/*.xml'
+                }
+                always{
+                    sh "docker logout"
+                }
+                success{
+                    emailext body: 'Link to JOB $BUILD_URL', subject: 'SUCCESSFUL BUILD: $BUILD_TAG', to: '$DEFAULT_RECIPIENTS'
+                }
+                failure{
+                    emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', to: '$DEFAULT_RECIPIENTS'
+                }    
             }
         }
         stage("Production branch"){
@@ -97,11 +109,18 @@ pipeline{
                 stage("Build Image"){
                     steps{
                         sh "docker build . -t team6hub/team6repo:team6tag -f /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile"
+                        //img = docker.build("team6hub/team6repo:team6tag", '-f /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile')
+
+                    }
+                }
+                stage("Login to Dcoker HUB"){
+                    steps{
+                        sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
                     }
                 }
                 stage("Push image to cloude"){
                     steps{
-                        sh "docker push team6hub/team6repo:team6tag"
+                       sh "docker push team6hub/team6repo:team6tag"
                     }
                 }
                 stage("Invoke playbook"){
@@ -113,6 +132,20 @@ pipeline{
                             //hostKeyChecking: false)
                     }
                 }
+            }
+            post{
+                always{
+                    junit '**/target/surefire-reports/*.xml'
+                }
+                always{
+                    sh "docker logout"
+                }
+                success{
+                    emailext body: 'Link to JOB $BUILD_URL', subject: 'SUCCESSFUL BUILD: $BUILD_TAG', to: '$DEFAULT_RECIPIENTS'
+                }
+                failure{
+                    emailext body: 'Link to JOB $BUILD_URL', subject: 'FAILURE BUILD: $BUILD_TAG', to: '$DEFAULT_RECIPIENTS'
+                }    
             }
         }
     }
