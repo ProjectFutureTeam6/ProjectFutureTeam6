@@ -18,6 +18,5 @@ target/
 *.iws
 *.iml
 *.ipr
-Dockerfile
 logs/
 *jar
