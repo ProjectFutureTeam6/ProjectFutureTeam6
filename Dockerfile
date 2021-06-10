@@ -1,6 +1,6 @@
 FROM openjdk:8
 
-WORKDIR /usr/src/myapp
+WORKDIR /urs/src/myapp
 
 COPY . /usr/src/myapp
 

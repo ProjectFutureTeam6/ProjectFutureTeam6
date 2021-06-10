@@ -3,7 +3,7 @@ services:
   app:
     container_name: java-container
     restart: always
-    image: jaydckr/team6dockerrepo:team6tag
+    image: team6hub/team6repo:team6tag
     #build: . # Will look at the current directory for the Dockerfile and build it
     ports:
       - '8080:8080' # map localhost 5001 to container's 8080.
