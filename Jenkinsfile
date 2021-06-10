@@ -70,10 +70,10 @@ pipeline{
                     steps{
                        sh "docker push team6hub/team6repo:team6tag"
                     }
-                }
-                post{
-                    always{
-                        sh "docker logout"
+                    post{
+                        always{
+                            sh "docker logout"
+                        }
                     }
                 }
                 stage("Invoke playbook"){
@@ -122,10 +122,10 @@ pipeline{
                     steps{
                         sh "docker push team6hub/team6repo:team6tag"
                     }
-                }
-                post{
-                    always{
-                        sh "docker logout"
+                    post{
+                        always{
+                            sh "docker logout"
+                        }
                     }
                 }
                 stage("Invoke playbook"){
