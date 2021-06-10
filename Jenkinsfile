@@ -52,7 +52,8 @@ pipeline{
                 }
                 stage("Build Image"){
                     steps{
-                        sh "docker build . -t team6hub/team6repo:team6tag -f /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile"
+                        //sh "docker build . -t team6hub/team6repo:team6tag -f /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile"
+                        img = docker.build("team6hub/team6repo:team6tag", '-f /var/lib/jenkins/workspace/ProjectFutureTeam6_development/Dockerfile')
 
                     }
                 }
