@@ -1,6 +1,6 @@
 FROM openjdk:8
 
-WORKDIR /usr/src/myapp
+WORKDIR /urs/src/myapp
 
 COPY /workspace/ProjectFutureTeam6_main/target/toDoAppWithLogin.jar /usr/src/myapp
 
