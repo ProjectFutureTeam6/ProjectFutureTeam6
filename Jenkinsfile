@@ -82,7 +82,7 @@ pipeline{
                         playbook: '/home/pf-team-6/project/ProjectFutureTeam6/test.yml',
                         inventory: '/etc/ansible/hosts',
                         credentialsId: 'vm_ssh',
-                        /hostKeyChecking: false) 
+                        hostKeyChecking: false) 
                     }
                 }
             }
